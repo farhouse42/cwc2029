@@ -587,26 +587,23 @@
     // Banderas: el código FED ya viene en mayúsculas (JP, SA, KR...), se usa tal cual
     function flagHTML(fed) {
       const code = fed.trim().toUpperCase();
-      return `<img class="flag-img" src="flags/${code}.png" alt="${fed}"
-        onerror="this.outerHTML='<span class=flag-fallback>${code}</span>'">`;
+      return `<img class="flag-img" src="flags/${code}.png" alt="${fed}" onerror="this.outerHTML='<span class=&quot;flag-fallback&quot;>${code}</span>'">`;
     }
 
     // Logos: convierte "Kashima Antlers" → "Kashima-Antlers"
-    // Respeta mayúsculas iniciales, reemplaza espacios por guiones, elimina caracteres raros
     function logoSlug(nombre) {
       return nombre.trim()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")  // quita tildes
-        .replace(/[^a-zA-Z0-9\s-]/g, "")                  // solo letras, números, espacios, guiones
-        .replace(/\s+/g, "-")                              // espacios → guiones
-        .replace(/-+/g, "-")                               // guiones dobles → uno
-        .replace(/^-|-$/g, "");                            // sin guiones al inicio/fin
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
     }
 
     function logoHTML(nombre) {
       const slug = logoSlug(nombre);
       const initials = nombre.trim().split(/\s+/).map(w => w[0]).join("").substring(0,3).toUpperCase();
-      return `<img class="team-logo" src="logos/${slug}.png" alt="${nombre}"
-        onerror="this.outerHTML='<div class=team-logo-fallback>${initials}</div>'">`;
+      return `<img class="team-logo" src="logos/${slug}.png" alt="${nombre}" onerror="this.outerHTML='<div class=&quot;team-logo-fallback&quot;>${initials}</div>'">`;
     }
 
     // ── Render de una confederación ──
