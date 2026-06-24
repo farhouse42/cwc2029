@@ -586,13 +586,13 @@
 
     // Banderas
     function flagHTML(fed) {
-      const code = fed.trim().toUpperCase();
+      const code = fed.trim().toLowerCase();
       return '<img class="flag-img" src="flags/' + code + '.png" alt="' + fed + '" data-fallback="' + code + '" data-type="flag">';
     }
 
     // Logos: convierte "Kashima Antlers" → "Kashima-Antlers"
     function logoSlug(nombre) {
-      return nombre.trim()
+      return nombre.trim().toLowerCase()
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         .replace(/[^a-zA-Z0-9\s-]/g, "")
         .replace(/\s+/g, "-")
